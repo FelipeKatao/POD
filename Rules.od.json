@@ -1,0 +1,15 @@
+{
+    "Rules":{
+        "LerNumeros":{
+            "doc":[
+                "Name of Rule",
+                "Descrition of Rule",
+                "Notes"
+            ],
+            "data":"",
+            "command":"",
+            "function":"",
+            "action":""            
+        }
+    }
+}
