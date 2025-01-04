@@ -17,11 +17,13 @@ class OrientedData:
         if Callback == True:
             Comand = "elsecommand"
             Action_ =  "elseaction"
+        
         RuleData = self.Rules[Rule][Comand]
+            
         for i in DataInject:
 
             i = str(i)
-            
+
             if "==" in RuleData: 
                 if  i == RuleData.split("==")[1]:
                     if "()" in self.Rules[Rule][Action_]:
