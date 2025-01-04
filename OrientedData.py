@@ -12,7 +12,10 @@ class OrientedData:
         self.Rules[RuleOd] = data["Rules"][RuleOd]
 
     def CommandRule(self,Rule:str,DataInject:list,Callback=False):
-        RuleData = self.Rules[Rule]["command"]
+        Comand = "command"
+        if Callback == True:
+            Comand = "elsecommand"
+        RuleData = self.Rules[Rule][Comand]
         for i in DataInject:
             i = str(i)
             if "==" in RuleData: 
