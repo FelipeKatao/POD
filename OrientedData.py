@@ -34,7 +34,7 @@ class OrientedData:
                     self.Results.append(self.Rules[Rule]["action"])
 
                 elif Callback == True:
-                    if  int(i) == self.Rules[Rule]["elsecommand"].split(">=")[1]:
+                    if  int(i) >= int(self.Rules[Rule]["elsecommand"].split(">=")[1]):
                         if "()" in self.Rules[Rule]["elseaction"]:
                             self.__CallFunctions(Rule,i)
                         self.Results.append(self.Rules[Rule]["elseaction"])
