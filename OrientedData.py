@@ -13,35 +13,31 @@ class OrientedData:
 
     def CommandRule(self,Rule:str,DataInject:list,Callback=False):
         Comand = "command"
+        Action_ = "action"
         if Callback == True:
             Comand = "elsecommand"
+            Action_ =  "elseaction"
         RuleData = self.Rules[Rule][Comand]
         for i in DataInject:
             i = str(i)
             if "==" in RuleData: 
                 if  i == RuleData.split("==")[1]:
-                    if "()" in self.Rules[Rule]["action"]:
+                    if "()" in self.Rules[Rule][Action_]:
                         self.__CallFunctions(Rule,i)
-                    self.Results.append(self.Rules[Rule]["action"])
+                    self.Results.append(self.Rules[Rule][Action_])
 
-                elif Callback == True:
-                    if  i == self.Rules[Rule]["elsecommand"].split("==")[1]:
-                        if "()" in self.Rules[Rule]["elseaction"]:
-                            self.__CallFunctions(Rule,i)
-                        self.Results.append(self.Rules[Rule]["elseaction"])
 
             if ">=" in RuleData: 
                 if  int(i) >= int(RuleData.split(">=")[1]):
-                    if "()" in self.Rules[Rule]["action"]:
+                    if "()" in self.Rules[Rule][Action_]:
                         self.__CallFunctions(Rule,i)
-                    self.Results.append(self.Rules[Rule]["action"])
+                    self.Results.append(self.Rules[Rule][Action_])
 
-                elif Callback == True:
-                    if  int(i) >= int(self.Rules[Rule]["elsecommand"].split(">=")[1]):
-                        if "()" in self.Rules[Rule]["elseaction"]:
-                            self.__CallFunctions(Rule,i)
-                        self.Results.append(self.Rules[Rule]["elseaction"])
-
+            if "<=" in RuleData: 
+                if  int(i) <= int(RuleData.split("<=")[1]):
+                    if "()" in self.Rules[Rule][Action_]:
+                        self.__CallFunctions(Rule,i)
+                    self.Results.append(self.Rules[Rule][Action_])
 
                 elif not Callback:
                     self.CommandRule(Rule,[i],True)
