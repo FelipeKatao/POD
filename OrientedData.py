@@ -19,12 +19,16 @@ class OrientedData:
             Action_ =  "elseaction"
         RuleData = self.Rules[Rule][Comand]
         for i in DataInject:
+
             i = str(i)
+            
             if "==" in RuleData: 
                 if  i == RuleData.split("==")[1]:
                     if "()" in self.Rules[Rule][Action_]:
                         self.__CallFunctions(Rule,i)
                     self.Results.append(self.Rules[Rule][Action_])
+                else:
+                    self.CommandRule(Rule,[i],True)
 
 
             if ">=" in RuleData: 
@@ -32,15 +36,46 @@ class OrientedData:
                     if "()" in self.Rules[Rule][Action_]:
                         self.__CallFunctions(Rule,i)
                     self.Results.append(self.Rules[Rule][Action_])
+                else:
+                    self.CommandRule(Rule,[i],True)
+
+            if ">" in RuleData and not "=" in RuleData: 
+                if  int(i) > int(RuleData.split(">")[1]):
+                    if "()" in self.Rules[Rule][Action_]:
+                        self.__CallFunctions(Rule,i)
+                    self.Results.append(self.Rules[Rule][Action_])
+                else:
+                    self.CommandRule(Rule,[i],True)
 
             if "<=" in RuleData: 
                 if  int(i) <= int(RuleData.split("<=")[1]):
                     if "()" in self.Rules[Rule][Action_]:
                         self.__CallFunctions(Rule,i)
                     self.Results.append(self.Rules[Rule][Action_])
-
-                elif not Callback:
+                else:
                     self.CommandRule(Rule,[i],True)
+
+
+            if "<" in RuleData and not "=" in RuleData: 
+                if  int(i) < int(RuleData.split("<")[1]):
+                    if "()" in self.Rules[Rule][Action_]:
+                        self.__CallFunctions(Rule,i)
+                    self.Results.append(self.Rules[Rule][Action_])
+                else:
+                    self.CommandRule(Rule,[i],True)
+
+            
+            if "!=" in RuleData: 
+                if  i != RuleData.split("!=")[1]:
+                    if "()" in self.Rules[Rule][Action_]:
+                        self.__CallFunctions(Rule,i)
+                    self.Results.append(self.Rules[Rule][Action_])
+                else:
+                    self.CommandRule(Rule,[i],True)
+
+
+            # else not Callback:
+            #         self.CommandRule(Rule,[i],True)
         return self.Results
 
 
